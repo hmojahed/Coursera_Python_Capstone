@@ -1,0 +1,78 @@
+# Create a blue circle at NASA Johnson Space Center's coordinate with a popup label showing its name
+circle = folium.Circle(nasa_coordinate, radius=1000, color='#d35400', fill=True).add_child(folium.Popup('NASA Johnson Space Center'))
+# Create a blue circle at NASA Johnson Space Center's coordinate with a icon showing its name
+marker = folium.map.Marker(
+    nasa_coordinate,
+    # Create an icon as a text label
+    icon=DivIcon(
+        icon_size=(20,20),
+        icon_anchor=(0,0),
+        html='<div style="font-size: 12; color:#d35400;"><b>%s</b></div>' % 'NASA JSC',
+        )
+    )
+site_map.add_child(circle)
+site_map.add_child(marker)
+
+
+
+-------------TASK1
+
+# Initial the map
+site_map = folium.Map(location=[launch_sites_df.Lat[0], launch_sites_df.Long[0]], zoom_start=5)
+
+# For each launch site, add a Circle object based on its coordinate (Lat, Long) values. In addition, add Launch site name as a popup label
+
+for lat, long, launch in zip(launch_sites_df.Lat, launch_sites_df.Long, launch_sites_df['Launch Site']):
+    print (lat, long, launch)
+    # Create a blue circle at NASA Johnson Space Center's coordinate with a popup label showing its name
+    circle = folium.Circle([lat, long], radius=1000, color='#000000', fill=True).add_child(folium.Popup('Launch Site'))
+    # Create a blue circle at NASA Johnson Space Center's coordinate with a icon showing its name
+    marker = folium.map.Marker([lat, long], icon=DivIcon(icon_size=(20,20),icon_anchor=(0,0), html='<div style="font-size: 12; color:#d35400;"><b>%s</b></div>' % launch, ))
+    site_map.add_child(circle)
+    site_map.add_child(marker)
+site_map
+
+
+
+
+-------------TASK2
+# Add marker_cluster to current site_map
+site_map.add_child(marker_cluster)
+
+for index, record in spacex_df.iterrows():
+
+    marker = folium.Marker(location=[record.Lat, record.Long], icon=folium.Icon(color='white', icon_color=record['marker_color']))
+    marker_cluster.add_child(marker)
+
+site_map
+
+-------------TASK3
+# find coordinate of the closet coastline
+# e.g.,: Lat: 28.56367  Lon: -80.57163
+#distance_coastline = calculate_distance(launch_site_lat, launch_site_lon, coastline_lat, coastline_lon)
+distance_coastline = calculate_distance(28.56344, -80.56789, 28.5634, -80.57679)
+#distance_coastline = calculate_distance(28.5632, -80.57, 28.56367, -80.57163)
+distance_coastline
+
+#Output: 0.8694690596104412
+
+
+# Create and add a folium.Marker on your selected closest coastline point on the map
+# Display the distance between coastline point and launch site using the icon property 
+# for example
+coordinate=[28.5634, -80.57679]
+distance_marker = folium.Marker(
+    coordinate,
+    icon=DivIcon(
+        icon_size=(20,20),
+        icon_anchor=(0,0),
+        html='<div style="font-size: 12; color:#d35400;"><b>%s</b></div>' % "{:10.2f} KM".format(distance_coastline),
+        )
+    )
+
+
+# Create a `folium.PolyLine` object using the coastline coordinates and launch site coordinate
+coordinates={(28.56344, -80.56789), (28.5634, -80.57679)}
+lines=folium.PolyLine(locations=coordinates, weight=1)
+site_map.add_child(lines)
+

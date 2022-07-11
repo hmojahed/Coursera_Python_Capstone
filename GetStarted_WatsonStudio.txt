@@ -1,0 +1,20 @@
+1. Login to IBM Watson
+https://cloud.ibm.com/catalog/services/watson-studio?utm_medium=Exinfluencer&utm_source=Exinfluencer&utm_content=000026UJ&utm_term=10006555&utm_id=NA-SkillsNetwork-cf-courses-datas3uscloud-object-storageappdomaincloud-SkillsNetworkCoursesIBMDeveloperSkillsNetworkPY0101ENSkillsNetwork19487395-2022-01-01
+use: you...@gmail
+pass: H...1!
+
+Click on "view existing" link from the right panel, if you have created multiple accounts in the past.
+
+2. "Launch" IBM Cloud
+
+3. (may be skipped) Services and Software
+
+4. (may be skipped) Watson Studio MX
+
+5. (may be skipped) Launch in IBM Cloud Pak for Data (IBM Watson Studio with dark background opens)
+
+5.1. Create a project
+5.2. Create an empty project (Make sure it has the Free Storage)
+5.3. New Asset>search for Jupyter notebook editor
+5.4. "from URL" tab> paste the Link from Coursera for the lab, give it a name and discription
+5.5. Create and ignore the error

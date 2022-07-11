@@ -1,0 +1,5 @@
+We picked the highest accuracy model.
+Also in confusion matrix, ignore the true positive and true negatives. 
+Look at False Positive which determines the worse models (because you cannot afford predicting something would land, but in reality it would not land)
+False Negatives are less problematic, because we predicted that it would not land (kinda a negative outcome), but to our surprise it landed (good outcome).
+
